@@ -10,6 +10,7 @@ public class CalculatorStructure {
     // private String updatedText;
     private int calFieldInt = 0;
     private int charCounter = 0;
+    private int result = 0;
 
     /**
      * 
@@ -133,6 +134,7 @@ public class CalculatorStructure {
                         charCounter--;
                         calField.setText("");
                         calFieldInt = 0;
+                        result = 0;
                     }
                 }
             }
@@ -245,6 +247,22 @@ public class CalculatorStructure {
                 CommonConstants.BUTTON_SIZE[0],
                 CommonConstants.BUTTON_SIZE[0]);
         operatorButton.setFocusable(false);
+        operatorButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (operatorButton.getText().equals("+")) {
+                    result += calFieldInt;
+                    calField.setText("");
+                } else if (operatorButton.getText().equals("-")) {
+                    result -= calFieldInt;
+                    calField.setText("");
+                }
+
+            }
+
+        });
         operatorButton.addMouseListener(new MouseListener() {
 
             @Override
@@ -254,7 +272,7 @@ public class CalculatorStructure {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                calField.setText(operatorButton.getText());
+
             }
 
             @Override
@@ -299,16 +317,25 @@ public class CalculatorStructure {
         equalButton.setBounds(CommonConstants.HORIZONTAL_LIMIT, CommonConstants.VERTICAL_LIMIT,
                 CommonConstants.BUTTON_SIZE[0],
                 CommonConstants.BUTTON_SIZE[0]);
+
+        equalButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(result);
+            }
+
+        });
         equalButton.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                calField.setText(equalButton.getText());
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                calField.setText(equalButton.getText());
+
             }
 
             @Override
