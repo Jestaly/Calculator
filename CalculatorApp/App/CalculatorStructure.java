@@ -11,6 +11,8 @@ public class CalculatorStructure {
     private int calFieldInt = 0;
     private int charCounter = 0;
     private int result = 0;
+    private boolean addIdentifier = false;
+    private boolean subIdentifier = false;
 
     /**
      * 
@@ -134,7 +136,7 @@ public class CalculatorStructure {
                         charCounter--;
                         calField.setText("");
                         calFieldInt = 0;
-                        result = 0;
+
                     }
                 }
             }
@@ -189,6 +191,10 @@ public class CalculatorStructure {
 
                 calField.setText("");
                 charCounter = 0;
+                calFieldInt = 0;
+                result = 0;
+                addIdentifier = false;
+                subIdentifier = false;
 
             }
 
@@ -254,10 +260,16 @@ public class CalculatorStructure {
 
                 if (operatorButton.getText().equals("+")) {
                     result += calFieldInt;
+                    addIdentifier = true;
+                    subIdentifier = false;
                     calField.setText("");
+                    calFieldInt = 0;
                 } else if (operatorButton.getText().equals("-")) {
                     result -= calFieldInt;
+                    subIdentifier = true;
+                    addIdentifier = false;
                     calField.setText("");
+                    calFieldInt = 0;
                 }
 
             }
@@ -322,7 +334,18 @@ public class CalculatorStructure {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(result);
+                if (addIdentifier == true && subIdentifier == false) {
+                    result += calFieldInt;
+                    calFieldInt = 0;
+                    System.out.println(result);
+                    calField.setText(Integer.toString(result));
+                } else if (addIdentifier == false && subIdentifier == true) {
+                    result -= calFieldInt;
+                    calFieldInt = 0;
+                    System.out.println(result);
+                    calField.setText(Integer.toString(result));
+                }
+
             }
 
         });
