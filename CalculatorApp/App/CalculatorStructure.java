@@ -23,12 +23,12 @@ public class CalculatorStructure {
      * 
      * 
      * CALLS OUT THE PANEL
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
+     * |
+     * |
+     * |
+     * |
+     * |
+     * V
      */
     public void calculatorPanel(JPanel calPanel) {
         calPanel.setLayout(null);
@@ -45,12 +45,12 @@ public class CalculatorStructure {
      * 
      * 
      * CALLS OUT THE TEXTFIELD
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
+     * |
+     * |
+     * |
+     * |
+     * |
+     * V
      */
     public void calculatorField(JTextField calField) {
         calField.setBounds(0, 0, CommonConstants.FIELD_SIZE[0], CommonConstants.FIELD_SIZE[1]);
@@ -75,12 +75,12 @@ public class CalculatorStructure {
      * 
      * 
      * CALLS OUT THE MAIN BUTTONS
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
+     * |
+     * |
+     * |
+     * |
+     * |
+     * V
      */
     public void mainCalculatorButtons(JTextField calField, String[] mainButtonName, int xValue, int yValue,
             JButton mainButton) {
@@ -169,12 +169,12 @@ public class CalculatorStructure {
      * 
      * 
      * CALLS OUT THE CLEAR ALL BUTTON
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
+     * |
+     * |
+     * |
+     * |
+     * |
+     * V
      */
     public void clearCalculatorButton(JButton clearAllButton, JTextField calField) {
 
@@ -238,12 +238,12 @@ public class CalculatorStructure {
      * 
      * 
      * CALLS OUT THE OPERATOR BUTTONS
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
+     * |
+     * |
+     * |
+     * |
+     * |
+     * V
      */
     public void operatorCalculatorButtons(JButton operatorButton, JTextField calField) {
         operatorButton.setBackground(new Color(225, 215, 183));
@@ -259,7 +259,8 @@ public class CalculatorStructure {
             public void actionPerformed(ActionEvent e) {
 
                 if (operatorButton.getText().equals("+")) {
-                    result += calFieldInt;
+                    calFieldInt += result;
+                    result = calFieldInt;
                     addIdentifier = true;
                     subIdentifier = false;
                     calField.setText("");
@@ -314,12 +315,12 @@ public class CalculatorStructure {
      * 
      * 
      * CALLS OUT THE EQUAL BUTTON
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
+     * |
+     * |
+     * |
+     * |
+     * |
+     * V
      */
     public void equalCalculatorButton(JButton equalButton, JTextField calField) {
         equalButton.setBackground(new Color(225, 215, 183));
@@ -335,14 +336,17 @@ public class CalculatorStructure {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (addIdentifier == true && subIdentifier == false) {
-                    result += calFieldInt;
+                    calFieldInt += result;
+                    result = calFieldInt;
                     calFieldInt = 0;
                     System.out.println(result);
+                    calField.setText("");
                     calField.setText(Integer.toString(result));
                 } else if (addIdentifier == false && subIdentifier == true) {
                     result -= calFieldInt;
                     calFieldInt = 0;
                     System.out.println(result);
+                    calField.setText("");
                     calField.setText(Integer.toString(result));
                 }
 
