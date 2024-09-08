@@ -12,6 +12,7 @@ public class CalculatorStructure {
     private int charCounter = 0;
     private int result = 0;
     private int subCount = 0;
+    private int addCount = 0;
     private boolean addIdentifier = false;
     private boolean subIdentifier = false;
 
@@ -137,7 +138,6 @@ public class CalculatorStructure {
                         charCounter--;
                         calField.setText("");
                         calFieldInt = 0;
-
                     }
                 }
             }
@@ -197,6 +197,7 @@ public class CalculatorStructure {
                 addIdentifier = false;
                 subIdentifier = false;
                 subCount = 0;
+                addCount = 0;
 
             }
 
@@ -261,7 +262,7 @@ public class CalculatorStructure {
             public void actionPerformed(ActionEvent e) {
 
                 if (operatorButton.getText().equals("+")) {
-
+                    addCount++;
                     result += calFieldInt;
                     addIdentifier = true;
                     subIdentifier = false;
@@ -271,13 +272,13 @@ public class CalculatorStructure {
                 } else if (operatorButton.getText().equals("-")) {
                     // result = calFieldInt - result;
                     subCount++;
-                    if (subCount == 1) {
+                    if (subCount == 1 && addCount == 0) {
                         result = calFieldInt - result;
                         subIdentifier = true;
                         addIdentifier = false;
                         calField.setText("");
                         calFieldInt = 0;
-                    } else if (subCount > 1) {
+                    } else if (subCount > 1 || addIdentifier == true || subIdentifier == false) {
                         result -= calFieldInt;
                         subIdentifier = true;
                         addIdentifier = false;
@@ -355,7 +356,6 @@ public class CalculatorStructure {
                     System.out.println(result);
                     calField.setText(Integer.toString(result));
                 } else if (addIdentifier == false && subIdentifier == true) {
-
                     result -= calFieldInt;
                     calFieldInt = 0;
                     System.out.println(result);
