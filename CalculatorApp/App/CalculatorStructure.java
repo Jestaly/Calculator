@@ -270,7 +270,6 @@ public class CalculatorStructure {
                     calFieldInt = 0;
                     System.out.println(result);
                 } else if (operatorButton.getText().equals("-")) {
-                    // result = calFieldInt - result;
                     subCount++;
                     if (subCount == 1 && addCount == 0) {
                         result = calFieldInt - result;
