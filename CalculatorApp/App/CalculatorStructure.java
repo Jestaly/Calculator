@@ -13,6 +13,8 @@ public class CalculatorStructure {
     private int result = 0;
     private int subCount = 0;
     private int addCount = 0;
+    String calFieldSubString = "";
+    int calFieldSubInt = 0;
     private boolean addIdentifier = false;
     private boolean subIdentifier = false;
 
@@ -103,7 +105,6 @@ public class CalculatorStructure {
             public void actionPerformed(ActionEvent e) {
                 try {
 
-                    charCounter++;
                     calField.setText(String.join("", calField.getText(), mainButton.getText()));
                     calFieldInt = Integer.parseInt(calField.getText());
                     if (addCount == 0 && subCount == 0) {
@@ -111,15 +112,23 @@ public class CalculatorStructure {
                         System.out.println(result);
                     }
                     if (addIdentifier == true && subIdentifier == false) {
-                        // result -=
-                        // Integer.parseInt(Character.toString(calField.getText().charAt(charCounter)));
-                        result += calFieldInt;
 
+                        calFieldSubString += Character.toString(calField.getText().charAt(charCounter));
+
+                        // System.out.println(calFieldSubString);
+                        // System.out.println(charCounter);
+                        System.out.println(calFieldSubString);
+                        // calFieldSubInt += Integer.parseInt(calFieldSubString);
                         System.out.println(result);
+                        result += calFieldInt;
+                        System.out.println(result);
+                        // System.out.println(result);
                     } else if (addIdentifier == false && subIdentifier == true) {
                         result -= calFieldInt;
-                        System.out.println(result);
+                        // System.out.println(result);
                     }
+                    charCounter++;
+
                 } catch (Exception f) {
 
                     calField.setText(String.join("", Integer.toString(calFieldInt), ""));
