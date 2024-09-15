@@ -90,7 +90,6 @@ public class CalculatorGui extends JFrame {
 
                 if (xValue > CommonConstants.HORIZONTAL_LIMIT) {
                     xValue = CommonConstants.H_AND_V_VALUE;
-
                 }
 
                 JButton mainButton = new JButton(mainButtonName[counter++]);

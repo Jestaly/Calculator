@@ -106,7 +106,15 @@ public class CalculatorStructure {
                     charCounter++;
                     calField.setText(String.join("", calField.getText(), mainButton.getText()));
                     calFieldInt = Integer.parseInt(calField.getText());
-
+                    if (charCounter == 1) {
+                        result = calFieldInt;
+                    }
+                    if (addIdentifier == true && subIdentifier == false) {
+                        result += calFieldInt;
+                        System.out.println(result);
+                    } else if (addIdentifier == false && subIdentifier == true) {
+                        result = calFieldInt - result;
+                    }
                 } catch (Exception f) {
 
                     calField.setText(String.join("", Integer.toString(calFieldInt), ""));
@@ -263,7 +271,7 @@ public class CalculatorStructure {
 
                 if (operatorButton.getText().equals("+")) {
                     addCount++;
-                    result += calFieldInt;
+                    // result += calFieldInt;
                     addIdentifier = true;
                     subIdentifier = false;
                     calField.setText("");
@@ -272,17 +280,19 @@ public class CalculatorStructure {
                 } else if (operatorButton.getText().equals("-")) {
                     subCount++;
                     if (subCount == 1 && addCount == 0) {
-                        result = calFieldInt - result;
+                        // result = calFieldInt - result;
                         subIdentifier = true;
                         addIdentifier = false;
                         calField.setText("");
                         calFieldInt = 0;
+
                     } else if (subCount > 1 || addIdentifier == true || subIdentifier == false) {
                         result -= calFieldInt;
                         subIdentifier = true;
                         addIdentifier = false;
                         calField.setText("");
                         calFieldInt = 0;
+
                     }
                     System.out.println(result);
 
@@ -350,7 +360,7 @@ public class CalculatorStructure {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (addIdentifier == true && subIdentifier == false) {
-                    result += calFieldInt;
+                    // result += calFieldInt;
                     calFieldInt = 0;
                     System.out.println(result);
                     calField.setText(Integer.toString(result));
