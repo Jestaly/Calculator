@@ -106,14 +106,19 @@ public class CalculatorStructure {
                     charCounter++;
                     calField.setText(String.join("", calField.getText(), mainButton.getText()));
                     calFieldInt = Integer.parseInt(calField.getText());
-                    if (charCounter == 1) {
+                    if (addCount == 0 && subCount == 0) {
                         result = calFieldInt;
+                        System.out.println(result);
                     }
                     if (addIdentifier == true && subIdentifier == false) {
+                        // result -=
+                        // Integer.parseInt(Character.toString(calField.getText().charAt(charCounter)));
                         result += calFieldInt;
+
                         System.out.println(result);
                     } else if (addIdentifier == false && subIdentifier == true) {
-                        result = calFieldInt - result;
+                        result -= calFieldInt;
+                        System.out.println(result);
                     }
                 } catch (Exception f) {
 
@@ -276,24 +281,25 @@ public class CalculatorStructure {
                     subIdentifier = false;
                     calField.setText("");
                     calFieldInt = 0;
+                    charCounter = 0;
                     System.out.println(result);
                 } else if (operatorButton.getText().equals("-")) {
                     subCount++;
-                    if (subCount == 1 && addCount == 0) {
-                        // result = calFieldInt - result;
-                        subIdentifier = true;
-                        addIdentifier = false;
-                        calField.setText("");
-                        calFieldInt = 0;
 
-                    } else if (subCount > 1 || addIdentifier == true || subIdentifier == false) {
-                        result -= calFieldInt;
-                        subIdentifier = true;
-                        addIdentifier = false;
-                        calField.setText("");
-                        calFieldInt = 0;
+                    // result = calFieldInt - result;
+                    subIdentifier = true;
+                    addIdentifier = false;
+                    calField.setText("");
+                    calFieldInt = 0;
 
-                    }
+                    // else if (subCount > 1 || addIdentifier == true || subIdentifier == false) {
+                    // result -= calFieldInt;
+                    // subIdentifier = true;
+                    // addIdentifier = false;
+                    // calField.setText("");
+                    // calFieldInt = 0;
+
+                    // }
                     System.out.println(result);
 
                 }
@@ -365,7 +371,7 @@ public class CalculatorStructure {
                     System.out.println(result);
                     calField.setText(Integer.toString(result));
                 } else if (addIdentifier == false && subIdentifier == true) {
-                    result -= calFieldInt;
+                    // result -= calFieldInt;
                     calFieldInt = 0;
                     System.out.println(result);
                     calField.setText(Integer.toString(result));
